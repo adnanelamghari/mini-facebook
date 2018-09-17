@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "ff6b5100ce3c9f10a97b712884b65320",
+  "content-hash": "805066e5b192779cc20420ffa7ff38cc",
   "packages": [
     {
       "name": "doctrine/annotations",
@@ -4419,6 +4419,65 @@
       "time": "2018-07-26T09:06:28+00:00"
     },
     {
+      "name": "symfony/web-server-bundle",
+      "version": "v3.4.15",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/web-server-bundle.git",
+        "reference": "dad213bcae92c8ed53facca633c7e79fb2e0e9d6"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/dad213bcae92c8ed53facca633c7e79fb2e0e9d6",
+        "reference": "dad213bcae92c8ed53facca633c7e79fb2e0e9d6",
+        "shasum": ""
+      },
+      "require": {
+        "php": "^5.5.9|>=7.0.8",
+        "symfony/config": "~3.4|~4.0",
+        "symfony/console": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "symfony/http-kernel": "~3.3|~4.0",
+        "symfony/polyfill-ctype": "~1.8",
+        "symfony/process": "~3.3.14|^3.4.2|^4.0.2"
+      },
+      "suggest": {
+        "symfony/expression-language": "For using the filter option of the log server.",
+        "symfony/monolog-bridge": "For using the log server."
+      },
+      "type": "symfony-bundle",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.4-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Bundle\\WebServerBundle\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony WebServerBundle",
+      "homepage": "https://symfony.com",
+      "time": "2018-07-26T09:06:28+00:00"
+    },
+    {
       "name": "symfony/yaml",
       "version": "v3.4.15",
       "source": {
@@ -5495,65 +5554,6 @@
       "description": "Symfony WebProfilerBundle",
       "homepage": "https://symfony.com",
       "time": "2018-07-26T11:19:56+00:00"
-    },
-    {
-      "name": "symfony/web-server-bundle",
-      "version": "v3.4.15",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/symfony/web-server-bundle.git",
-        "reference": "dad213bcae92c8ed53facca633c7e79fb2e0e9d6"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/dad213bcae92c8ed53facca633c7e79fb2e0e9d6",
-        "reference": "dad213bcae92c8ed53facca633c7e79fb2e0e9d6",
-        "shasum": ""
-      },
-      "require": {
-        "php": "^5.5.9|>=7.0.8",
-        "symfony/config": "~3.4|~4.0",
-        "symfony/console": "~3.4|~4.0",
-        "symfony/dependency-injection": "~3.4|~4.0",
-        "symfony/http-kernel": "~3.3|~4.0",
-        "symfony/polyfill-ctype": "~1.8",
-        "symfony/process": "~3.3.14|^3.4.2|^4.0.2"
-      },
-      "suggest": {
-        "symfony/expression-language": "For using the filter option of the log server.",
-        "symfony/monolog-bridge": "For using the log server."
-      },
-      "type": "symfony-bundle",
-      "extra": {
-        "branch-alias": {
-          "dev-master": "3.4-dev"
-        }
-      },
-      "autoload": {
-        "psr-4": {
-          "Symfony\\Bundle\\WebServerBundle\\": ""
-        },
-        "exclude-from-classmap": [
-          "/Tests/"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "MIT"
-      ],
-      "authors": [
-        {
-          "name": "Fabien Potencier",
-          "email": "fabien@symfony.com"
-        },
-        {
-          "name": "Symfony Community",
-          "homepage": "https://symfony.com/contributors"
-        }
-      ],
-      "description": "Symfony WebServerBundle",
-      "homepage": "https://symfony.com",
-      "time": "2018-07-26T09:06:28+00:00"
     }
   ],
   "aliases": [],
