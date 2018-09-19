@@ -4,12 +4,13 @@ namespace App\Entity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="users")
  */
 class User
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;

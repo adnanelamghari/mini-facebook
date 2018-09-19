@@ -2,11 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
 </head>
 <body>
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 </body>
 </html>

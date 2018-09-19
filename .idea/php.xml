@@ -97,6 +97,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-pack" />
+      <path value="$PROJECT_DIR$/vendor/symfony/templating" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7" />
