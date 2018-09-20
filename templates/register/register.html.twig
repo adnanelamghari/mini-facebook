@@ -1,0 +1,59 @@
+{% extends 'base_i.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Register an Account</div>
+            <div class="card-body">
+                <form id="adnane" data-toggle="validator">
+                    <div class="form-group has-feedback">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="firstname">First name</label>
+                                <input class="form-control" id="firstname" name="form[firstname]" type="text"
+                                       aria-describedby="nameHelp" placeholder="Enter first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastname">Last name</label>
+                                <input class="form-control" id="lastname" name="form[lastname]" type="text"
+                                       aria-describedby="nameHelp" placeholder="Enter last name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="email">Email address</label>
+                        <input class="form-control" id="email" type="email" name="form[email]"
+                               aria-describedby="emailHelp" placeholder="Enter email"
+                               data-error="Bruh, that email address is invalid" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="password">Password</label>
+                                <input class="form-control" id="password" name="form[password]" type="password"
+                                       data-minlength="6" placeholder="Password" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirm-password">Confirm password</label>
+                                <input class="form-control" data-match="#password" name="form[plainPassword]"
+                                       data-match-error="Whoops, these don't match" id="confirm-password"
+                                       type="password" placeholder="Confirm password" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <span class="fa form-control-feedback" aria-hidden="true"></span>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <button class="btn btn-primary btn-block" class="submit" href="login.html">Register</button>
+                </form>
+                <div class="text-center">
+                    <a class="d-block small mt-3" href="/login">Login Page</a>
+                    <a class="d-block small" href="/forgot-password">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
