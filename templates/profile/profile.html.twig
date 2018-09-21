@@ -4,6 +4,149 @@
 
 {% block body %}
 
+    <div class="row">
+        <div class="col-12">
+            <div class="" style="margin-top: 20px;">
+                <img class="card-img-top" src="{{ asset('images/cover.jpg') }}" alt="Card image cap">
+                <div class="container bg-dark" style="height: 45px">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="btn-group col-lg-9" role="group">
+                            <a href="#" class="btn bg-dark">About</a>
+                            <a href="#" class="btn bg-dark">Friends</a>
+                            <a href="#" class="btn bg-dark">Photos</a>
+                            <a href="#" class="btn bg-dark">Archive</a>
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button"
+                                        class="btn bg-dark text-primary dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                                    More
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Videos</a>
+                                    <a class="dropdown-item" href="#">Videos</a>
+                                    <a class="dropdown-item" href="#">Check-Ins</a>
+                                    <a class="dropdown-item" href="#">Movies</a>
+                                    <a class="dropdown-item" href="#">TV Shows</a>
+                                    <a class="dropdown-item" href="#">Books</a>
+                                    <a class="dropdown-item" href="#">Events</a>
+                                    <a class="dropdown-item" href="#">Questions</a>
+                                    <a class="dropdown-item" href="#">Reviews</a>
+                                    <a class="dropdown-item" href="#">Instagram</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: -170px;">
+                    <img class="profile-pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                    <span class="indicator text-primary"
+                          style=" margin-left: 10px; font-size: 25px"> Adnane Lamghari</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5"><br>
+            <div class="card " style="margin-top: 1rem;">
+                <div class="card-header">
+                    <span class="fa fa-globe"></span> Intro
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        Eleve ingénieur à l'École Nationale Supérieure d'Informatique et d'Analyse des Systèmes (ENSIAS)
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <span class="fa fa-graduation-cap"></span> ENSIAS: Génie Logiciel
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7"><br>
+            <div class="col-12" id="new_status" class="card">
+                <ul class="col-12" id="post_header" role="navigation">
+                    <li><a href="#"><span class="fa fa-pencil"></span> Update Status</a></li>
+                    <li><a href="#"><span class="fa fa-picture-o"></span> Add Photos/Video</a></li>
+                    <li><a href="#"><span class="fa fa-th"></span> Create Photo Album</a></li>
+                </ul>
+                <div class="col-12 row" id="post_content">
+                    <div class="col-2">
+                        <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
+                             class="rounded-circle hvr-pulse-grow">
+                    </div>
+                    <div class="textarea_wrap col-10" style="padding-left: 0px"><textarea class="col-12"
+                                                                                          placeholder="What's on your mind?"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 row" id="post_footer">
+                    <ul class="navbar-nav col-7" style="display: inline-block;">
+                        <li><a href="#"><span class="fa fa-camera"></span></a></li>
+                        <li><a href="#"><span class="fa fa-user"></span></a></li>
+                        <li><a href="#"><span class="fa fa-glass"></span></a></li>
+                        <li><a href="#"><span class="fa fa-map-marker"></span></a></li>
+                    </ul>
+                    <div class="col-5">
+                        <button class="btn btn-default"><span class="fa fa-cog"></span> Custom</button>
+                        <button class="btn btn-primary">Post</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="facebook-box col-12 card ">
+                <div class="content">
+                    <div class="right-icon">
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 avatar">
+                            <img src="{{ asset('images/no-img-user.png') }}" width="60px" alt="profile pic"
+                                 class="rounded-circle hvr-pulse-grow"/>
+                        </div>
+                        <div class="col-10 name">
+                            <h5><a href="http://khoipro.com" target="_blank">Adnane Lamghari</a></h5>
+                            <span class="sub">10 October 2015 at 15:00</span>
+                        </div>
+                    </div>
+                    <div class="row text" style="margin-top: 20px">
+                        Sed tristique dapibus velit. Sed at mauris porttitor, aliquam erat eu, mollis quam. Morbi sit
+                        amet
+                        dignissim turpis. Proin sed dui nisl. Quisque lorem risus, cursus eget metus nec, lobortis
+                        varius
+                        massa.
+                    </div>
+                    <div class="row thumbnail">
+                        <img src="http://placehold.it/600x350" alt="" class="img-fluid"/>
+                    </div>
+                    <div class="row action btn-group col-12">
+                        <button href="#" class="btn col-4 bg-white"><span class="fa fa-thumbs-up"></span> Like</button>
+                        <button href="#" class="btn col-4 bg-white"><span class="fa fa-comment"></span> Comment</button>
+                        <button href="#" class="btn col-4 bg-white"><span class="fa fa-share"></span> Share</button>
+                    </div>
+                </div>
+                <div class="footer ">
+                    <a href="#">6 people</a> like this.
+                    <div class="row">
+                        <div class="col-1 small-avatar">
+                            <img src="{{ asset('images/no-img-user.png') }}" width="32px" alt=""/>
+                        </div>
+                        <div class="col-10 write-comment">
+                            <input type="text" placeholder="Write your comment...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function h(e) {
+            $(e).css({'height': '65px', 'overflow-y': 'hidden'}).height(e.scrollHeight - 30);
+        }
 
-
+        $('textarea').each(function () {
+            h(this);
+        }).on('input', function () {
+            h(this);
+        });
+    </script>
 {% endblock %}
