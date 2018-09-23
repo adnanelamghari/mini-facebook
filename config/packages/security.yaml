@@ -1,27 +1,33 @@
 security:
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
   encoders:
-    FOS\UserBundle\Model\UserInterface: bcrypt
-
-  role_hierarchy:
-    ROLE_ADMIN:       ROLE_USER
-    ROLE_SUPER_ADMIN: ROLE_ADMIN
-
+    App\Entity\User:
+      algorithm: bcrypt
   providers:
-    fos_userbundle:
-      id: fos_user.user_provider.username_email
+    in_memory: { memory: ~ }
+    in_database:
+      entity:
+        class: App\Entity\User
+        property: email
+
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
-      pattern: ^/
-      form_login:
-        provider: fos_userbundle
-        csrf_token_generator: security.csrf.token_manager
+      anonymous: true
 
-      logout:       true
-      anonymous:    true
+      provider: in_database
+
+      form_login:
+        login_path: security_login
+        check_path: security_login
+        default_target_path: /user
+      logout:
+        path: security_logout
+        target: security_login
+
+
 
       # activate different ways to authenticate
 
@@ -32,5 +38,17 @@ security:
       # https://symfony.com/doc/current/security/form_login_setup.html
 
   # Easy way to control access for large sections of your site
-  # Note: Only the *first* access control that matches will be used
+  # Note: Only the first access control that matches will be used
+  access_denied_url: /user
+
+  role_hierarchy:
+    ROLE_ADMIN:       ROLE_USER
+    ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
   access_control:
+  - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/home, role: ROLE_USER }
+  #- { path: ^/, role: IS_AUTHENTICATED_FULLY }
+  - { path: ^/profile, roles: ROLE_USER }
+  - { path: ^/friends, roles: ROLE_USER }

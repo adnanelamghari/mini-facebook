@@ -1,7 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ controller_name }}{% endblock %}
-
+{% block friends %}
+    {% for friend in user.friends %}
+        <div class="row" style="margin-left: 0px">
+            <div class="col-lg-1">
+                <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
+                     height="40">
+            </div>
+            <div class="col-lg-10 row" style="margin-left: 5px">
+                <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
+                <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                      <i class="fa fa-fw fa-circle"></i>
+                    </span>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
 {% block body %}
     <div class="row">
         <div class="col-12">
@@ -211,14 +226,13 @@
                         </div>
                     </div>
                     <div class="row text" style="margin-top: 20px">
-                        Sed tristique dapibus velit. Sed at mauris porttitor, aliquam erat eu, mollis quam. Morbi sit
-                        amet
-                        dignissim turpis. Proin sed dui nisl. Quisque lorem risus, cursus eget metus nec, lobortis
-                        varius
-                        massa.
+                        Spacebook is a social network, created by adnane lamghari within a test proposed by Appartoo for
+                        an intership
+                        opportunity, the website has become a personnal project for him, so he will not stop coding in
+                        it, until finishing it.
                     </div>
                     <div class="row thumbnail">
-                        <img src="http://placehold.it/600x350" alt="" class="img-fluid"/>
+                        <img src="{{ asset('images/background.svg') }}" alt="" class="img-fluid" style="width: 100%"/>
                     </div>
                     <div class="row action btn-group col-12">
                         <button href="#" class="btn col-4 bg-white"><span class="fa fa-thumbs-up"></span> Like</button>
@@ -238,6 +252,53 @@
                     </div>
                 </div>
             </div>
+            {% for status in user.status %}
+                <br>
+                <div class="facebook-box col-12 card ">
+                    <div class="content">
+                        <div class="right-icon">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 avatar">
+                                <img src="{{ asset('images/no-img-user.png') }}" width="60px" alt="profile pic"
+                                     class="rounded-circle hvr-pulse-grow"/>
+                            </div>
+                            <div class="col-10 name">
+                                <h5><a href="http://khoipro.com"
+                                       target="_blank">{{ user.firstname }} {{ user.lastname }}</a></h5>
+                                <span class="sub">{{ status.date }}</span>
+                            </div>
+                        </div>
+                        <div class="row text" style="margin-top: 20px">
+                            {{ status.content }}
+                        </div>
+                        <div class="row thumbnail">
+                            {% if status.image is not empty %}
+                                <img src="http://placehold.it/600x350" alt="" class="img-fluid"/>
+                            {% endif %}
+                        </div>
+                        <div class="row action btn-group col-12">
+                            <button href="#" class="btn col-4 bg-white"><span class="fa fa-thumbs-up"></span> Like
+                            </button>
+                            <button href="#" class="btn col-4 bg-white"><span class="fa fa-comment"></span> Comment
+                            </button>
+                            <button href="#" class="btn col-4 bg-white"><span class="fa fa-share"></span> Share</button>
+                        </div>
+                    </div>
+                    <div class="footer ">
+                        <a href="#">6 people</a> like this.
+                        <div class="row">
+                            <div class="col-1 small-avatar">
+                                <img src="{{ asset('images/no-img-user.png') }}" width="32px" alt=""/>
+                            </div>
+                            <div class="col-10 write-comment">
+                                <input type="text" placeholder="Write your comment...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <script type="text/javascript">

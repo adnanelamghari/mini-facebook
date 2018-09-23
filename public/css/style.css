@@ -436,3 +436,11 @@ facebook-box {
 .profile-buttons {
     width: 120px;
 }
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.border-left {
+    border-left: solid #E8E8E8 1px;
+}
