@@ -178,8 +178,7 @@
 
 .profile-pic {
     border: solid 5px white;
-
-    margin-left: 50px;
+    margin-left: 20px;
     height: 150px;
 }
 
@@ -412,4 +411,28 @@ facebook-box {
 
 .bg-white {
     background-color: white;
+}
+
+.pic {
+    width: 100%;
+}
+
+.no-padding-margin {
+    margin: 0;
+    padding: 2px;
+}
+
+.friend-name {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 12px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.profile-buttons {
+    width: 120px;
 }

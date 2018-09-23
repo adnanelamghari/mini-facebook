@@ -26,6 +26,7 @@ class Status
      */
     private $date;
 
+
     public function getId(): int
     {
         return $this->id;
@@ -54,5 +55,6 @@ class Status
 
         return $this;
     }
+
 
 }

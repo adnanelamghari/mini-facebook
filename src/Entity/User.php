@@ -72,6 +72,11 @@ class User implements UserInterface
     private $friends;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="no")
+     */
+    private $status;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -123,6 +128,7 @@ class User implements UserInterface
     {
         $this->roles = array('ROLE_USER');
         $this->friends = new ArrayCollection();
+        $this->status = new ArrayCollection();
     }
 
     public function getEmail()
@@ -204,6 +210,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($friend->getUser() === $this) {
                 $friend->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Status[]
+     */
+    public function getStatus(): Collection
+    {
+        return $this->status;
+    }
+
+    public function addStatus(Status $status): self
+    {
+        if (!$this->status->contains($status)) {
+            $this->status[] = $status;
+            $status->setNo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(Status $status): self
+    {
+        if ($this->status->contains($status)) {
+            $this->status->removeElement($status);
+            // set the owning side to null (unless already changed)
+            if ($status->getNo() === $this) {
+                $status->setNo(null);
             }
         }
 

@@ -3,7 +3,6 @@
 {% block title %}{{ controller_name }}{% endblock %}
 
 {% block body %}
-
     <div class="row">
         <div class="col-12">
             <div class="" style="margin-top: 20px;">
@@ -38,10 +37,20 @@
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: -170px;">
-                    <img class="profile-pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
-                    <span class="indicator text-primary"
-                          style=" margin-left: 10px; font-size: 25px"> Adnane Lamghari</span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2" style="margin-top: -170px;">
+                            <img class="profile-pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4" style="margin-top: -100px;">
+                            <span class="indicator text-primary col-10" style=" margin-left: 10px; font-size: 25px"> Adnane Lamghari</span>
+                        </div>
+                        <div class="col-6" style="margin-top: -100px;">
+                            <a href="#" style="margin-left:200px;" class="btn bg-dark profile-buttons"><i
+                                        class="fa fa-forumbee "></i> Follow</a>
+                            <a href="#" class="btn bg-dark profile-buttons"><i class="fa fa-weixin"></i> Message</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +67,100 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <span class="fa fa-graduation-cap"></span> ENSIAS: Génie Logiciel
+                        <span style="margin-left: 5px"><i
+                                    class="fa fa-graduation-cap"></i> ENSIAS: Génie Logiciel</span>
+                    </div>
+                    <div class="row">
+                        <span style="margin-left: 5px"><i class="fa fa-home"></i> Tangier, Morocco</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card " style="margin-top: 1rem;">
+                <div class="card-header">
+                    <span class="fa fa-picture-o"></span> Photos
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                        <div class="col-4 no-padding-margin">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card " style="margin-top: 1rem;">
+                <div class="card-header">
+                    <span class="fa fa-users"></span> Friends
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
+                        <div class="col-4 no-padding-margin position-relative">
+                            <img class="pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
+                            <span class="friend-name"> adnane lamghari</span>
+                        </div>
                     </div>
                 </div>
             </div>
