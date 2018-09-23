@@ -3,6 +3,15 @@
     font-family: sans-serif;
 }
 
+.icon-btn {
+    background: transparent;
+    border: none;
+    margin: 0 auto;
+    color: white;
+    cursor: pointer;
+}
+
+
 #dateRangeForm .form-control-feedback {
     top: 0;
     right: -15px;
