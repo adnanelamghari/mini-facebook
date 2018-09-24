@@ -192,9 +192,12 @@
                         <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
                              class="rounded-circle hvr-pulse-grow">
                     </div>
-                    <div class="textarea_wrap col-10" style="padding-left: 0px"><textarea class="col-12"
-                                                                                          placeholder="What's on your mind?"></textarea>
-                    </div>
+                    <form action="{{ path('profile') }}" method="post">
+                        <div class="textarea_wrap col-10" style="padding-left: 0px"><textarea class="col-12"
+                                                                                              name="form[content]"
+                                                                                              placeholder="What's on your mind?"></textarea>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-12 row" id="post_footer">
                     <ul class="navbar-nav col-7" style="display: inline-block;">

@@ -20,12 +20,13 @@ security:
       provider: in_database
 
       form_login:
-        login_path: security_login
-        check_path: security_login
-        default_target_path: /user
+        login_path: login
+        check_path: login
+        failure_path: login #TODO login?error
+        default_target_path: profile
       logout:
-        path: security_logout
-        target: security_login
+        path: logout
+        target: login
 
 
 

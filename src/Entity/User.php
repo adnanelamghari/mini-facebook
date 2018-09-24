@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -52,12 +51,15 @@ class User implements UserInterface
     /**
      * @Assert\NotBlank()
      * @Assert\Length(max=4096)
+     * @Assert\EqualTo(propertyPath="password", message="The passwords are not the same")
      */
     private $plainPassword;
 
     /**
-     *
-     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5, minMessage="The password should contain at least 5 caracters")
+     * @ORM\Column(type="string", length=300)
+     * @Assert\EqualTo(propertyPath="plainPassword", message="The passwords are not the same")
      */
     private $password;
 
@@ -75,6 +77,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="no")
      */
     private $status;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isOnline;
 
     /**
      * @return mixed
@@ -243,6 +250,18 @@ class User implements UserInterface
                 $status->setNo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsOnline(): bool
+    {
+        return $this->isOnline;
+    }
+
+    public function setIsOnline(bool $isOnline): self
+    {
+        $this->isOnline = $isOnline;
 
         return $this;
     }
