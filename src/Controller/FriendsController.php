@@ -39,9 +39,9 @@ class FriendsController extends AbstractController
             $user->setPassword($password);
             $entityManager->persist($user);
             $entityManager->flush();
-/*            $repository = $this->getDoctrine()->getRepository(User::class);
-            $friend = $repository->findByEmail($user->getEmail());
-            $idUser = $friend->getId();*/
+            /*          $repository = $this->getDoctrine()->getRepository(User::class);
+                        $friend = $repository->findByEmail($user->getEmail());
+                        $idUser = $friend->getId();*/
             return $this->redirect($this->generateUrl('add-friend', array(
                 'idUser' => $user->getId(),
             )));

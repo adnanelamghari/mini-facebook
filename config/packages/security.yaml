@@ -49,7 +49,7 @@ security:
   access_control:
   - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
   - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-  #- { path: ^/home, role: ROLE_USER }
+  - { path: ^/home, role: ROLE_USER }
   #- { path: ^/, role: IS_AUTHENTICATED_FULLY }
-  #- { path: ^/profile, roles: ROLE_USER }
-  # - { path: ^/friends, roles: ROLE_USER }
+  - { path: ^/profile, roles: ROLE_USER }
+  - { path: ^/friends, roles: ROLE_USER }

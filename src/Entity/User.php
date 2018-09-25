@@ -191,7 +191,7 @@ class User implements UserInterface
     }
 
 
-    public function getIsOnline(): bool
+    public function getIsOnline(): ?bool
     {
         return $this->isOnline;
     }
