@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ controller_name }}{% endblock %}
+
+{% block body %}
+    <div class="card card-register mx-auto mt-5" style="border: none">
+        <div class="card-header">Add a new friend</div>
+        <div class="card-body">
+            {{ form_start(form) }}
+
+            <div class="form-group has-feedback">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_row(form.firstname, {'label' : "First name", 'attr': {'class': 'form-control', 'placeholder': "First name"}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.lastname, {'label' : "Last name", 'attr': {'class': 'form-control', 'placeholder': "Last name"}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                {{ form_row(form.email , {'label' : "Email", 'attr': {'class': 'form-control', 'placeholder': "Email"}}) }}
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group has-feedback">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        {{ form_row(form.password, {'label' : "Password", 'attr': {'class': 'form-control', 'placeholder': "Password"}}) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.plainPassword, {'label' : "Confirm password", 'attr': {'class': 'form-control' , 'placeholder': "Confirm password"}}) }}
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <span class="fa form-control-feedback" aria-hidden="true"></span>
+                <div class="help-block with-errors"></div>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Add Friend</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

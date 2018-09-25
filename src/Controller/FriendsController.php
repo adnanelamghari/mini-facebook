@@ -6,6 +6,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\UserType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FriendsController extends AbstractController
 {
@@ -22,6 +25,34 @@ class FriendsController extends AbstractController
             'controller_name' => 'Friends',
         ]);
     }
+
+    /**
+     * @Route("/friends/add-new-friend", name="add-new-friend")
+     */
+    public function addNewFriend(Request $request, UserPasswordEncoderInterface $passwordEncoder, ObjectManager $entityManager)
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $entityManager->persist($user);
+            $entityManager->flush();
+/*            $repository = $this->getDoctrine()->getRepository(User::class);
+            $friend = $repository->findByEmail($user->getEmail());
+            $idUser = $friend->getId();*/
+            return $this->redirect($this->generateUrl('add-friend', array(
+                'idUser' => $user->getId(),
+            )));
+        }
+
+        return $this->render(
+            'friends/add_friend.html.twig',
+            array('form' => $form->createView(), 'controller_name' => 'Add new friend')
+        );
+    }
+
 
     /**
      * @Route("/friends/add-friend/{idUser}", name="add-friend")
