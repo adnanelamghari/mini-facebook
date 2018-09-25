@@ -20,6 +20,11 @@ class ProfileController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(User::class);
         if ($idUser == 0) {
             $idUser = $this->getUser()->getId();
+            $currentUser = $repository->find($idUser);
+            if (!$currentUser->getIsOnline()) {
+                $currentUser->setIsOnline(true);
+                $entityManager->flush();
+            }
         }
         $user = $repository->find($idUser);
         $status = new Status();

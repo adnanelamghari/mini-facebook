@@ -124,7 +124,7 @@
                     <tr>
                         <td><img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow"
                                  width="80" height="80" style="margin: 12px;"></td>
-                        <td>{{ user.firstname }} {{ user.lastname }}
+                        <td>{{ friend.firstname }} {{ friend.lastname }}
                             <p class="">Fonction:</p>
                             <hr>
                             <p class="font-khfif">Dernière activité: </p>
@@ -132,15 +132,16 @@
                     </tr>
                 </table>
                 <div class="col-lg-12">
-                    <div class="row row-footer">
+                    <div class="row row-footer bg-dark">
                         <div class="col-lg-9 hvr-underline-from-center" style="padding-left: 0px;">
-                            <a style="text-align: left;" id="button" href="/profile" title="Show profile"
+                            <a style="text-align: left;" id="button"
+                               href="{{ path('remove-friend', {idUser: friend.id}) }}" title="Show profile"
                                class="icon-btn col-lg-12"><i class="fa fa-cog"></i> Show profile</a>
                         </div>
                         <div class="d-block col-lg-3 text-center">|
                             <button data-toggle="modal" title="Vérifier cet utilisateur" class="icon-btn"><i
                                         class="fa fa-check"></i></button>
-                            <a data-toggle="modal" href="{{ path('delete-friend', {idUser: user.id}) }}"
+                            <a data-toggle="modal" href="{{ path('remove-friend', {idUser: friend.id}) }}"
                                title="Supprimer cet utilisateur" class="icon-btn"><i
                                         class="fa fa-trash"></i></a>
                         </div>

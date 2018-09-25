@@ -33,7 +33,7 @@ class FriendsController extends AbstractController
         $user = $this->getUser();
         $currentUser = $repository->find($user->getId());
         $currentUser->addFriend($friend);
-        $entityManager->refresh($currentUser);
+        // $entityManager->refresh($currentUser);
         $entityManager->flush();
         // return $this->redirect('profile', ['idUser' => $idUser ]);
         return $this->redirect($this->generateUrl('profile', array(
@@ -52,7 +52,7 @@ class FriendsController extends AbstractController
         $user = $this->getUser();
         $currentUser = $repository->find($user->getId());
         $currentUser->removeFriend($friend);
-        $entityManager->refresh($currentUser);
+        // $entityManager->refresh($currentUser);
         $entityManager->flush();
         // return $this->redirect('profile', ['idUser' => $idUser ]);
         return $this->redirect($this->generateUrl('profile', array(
