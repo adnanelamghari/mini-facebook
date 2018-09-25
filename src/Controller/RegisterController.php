@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UserType;
 use App\Entity\User;
@@ -14,7 +15,7 @@ class RegisterController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, ObjectManager $entityManager)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -22,10 +23,9 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->redirectToRoute('/login');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render(

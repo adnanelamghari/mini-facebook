@@ -12,7 +12,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity
  * @UniqueEntity(fields="email", message="Email already taken")
- * @UniqueEntity(fields="username", message="Username already taken")
  */
 class User implements UserInterface
 {
@@ -24,15 +23,14 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $username;
 
@@ -64,24 +62,24 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     private $roles;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="user")
-     */
-    private $friends;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="no")
-     */
-    private $status;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isOnline;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     */
+    private $friends;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Status", mappedBy="user")
+     */
+    private $status;
 
     /**
      * @return mixed
@@ -192,19 +190,31 @@ class User implements UserInterface
     {
     }
 
+
+    public function getIsOnline(): bool
+    {
+        return $this->isOnline;
+    }
+
+    public function setIsOnline(bool $isOnline): self
+    {
+        $this->isOnline = $isOnline;
+
+        return $this;
+    }
+
     /**
      * @return Collection|User[]
      */
-    public function getFriends(): Collection
+    public function getFriends(): ?Collection
     {
         return $this->friends;
     }
 
-    public function addFriend(User $friend): self
+    public function addFriend(?User $friend): self
     {
         if (!$this->friends->contains($friend)) {
             $this->friends[] = $friend;
-            $friend->setUser($this);
         }
 
         return $this;
@@ -214,10 +224,6 @@ class User implements UserInterface
     {
         if ($this->friends->contains($friend)) {
             $this->friends->removeElement($friend);
-            // set the owning side to null (unless already changed)
-            if ($friend->getUser() === $this) {
-                $friend->setUser(null);
-            }
         }
 
         return $this;
@@ -226,16 +232,16 @@ class User implements UserInterface
     /**
      * @return Collection|Status[]
      */
-    public function getStatus(): Collection
+    public function getStatus(): ?Collection
     {
         return $this->status;
     }
 
-    public function addStatus(Status $status): self
+    public function addStatus(?Status $status): self
     {
         if (!$this->status->contains($status)) {
             $this->status[] = $status;
-            $status->setNo($this);
+            $status->setUser($this);
         }
 
         return $this;
@@ -246,22 +252,10 @@ class User implements UserInterface
         if ($this->status->contains($status)) {
             $this->status->removeElement($status);
             // set the owning side to null (unless already changed)
-            if ($status->getNo() === $this) {
-                $status->setNo(null);
+            if ($status->getUser() === $this) {
+                $status->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getIsOnline(): bool
-    {
-        return $this->isOnline;
-    }
-
-    public function setIsOnline(bool $isOnline): self
-    {
-        $this->isOnline = $isOnline;
 
         return $this;
     }

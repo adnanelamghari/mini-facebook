@@ -10,9 +10,11 @@
             </div>
             <div class="col-lg-10 row" style="margin-left: 5px">
                 <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
-                <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                {% if friend.isOnline %}
+                    <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
                       <i class="fa fa-fw fa-circle"></i>
                     </span>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
@@ -58,11 +60,13 @@
                             <img class="profile-pic" src="{{ asset('images/no-img-user.png') }}" alt="Card image cap">
                         </div>
                         <div class="col-4" style="margin-top: -100px;">
-                            <span class="indicator text-primary col-10" style=" margin-left: 10px; font-size: 25px"> Adnane Lamghari</span>
+                            <span class="indicator text-primary col-10"
+                                  style=" margin-left: 10px; font-size: 25px"> {{ user.firstname }} {{ user.lastname }}</span>
                         </div>
                         <div class="col-6" style="margin-top: -100px;">
-                            <a href="#" style="margin-left:200px;" class="btn bg-dark profile-buttons"><i
-                                        class="fa fa-forumbee "></i> Follow</a>
+                            <a href="{{ path('add-friend', {idUser: user.id}) }}" style="margin-left:200px;"
+                               class="btn bg-dark profile-buttons"><i
+                                        class="fa fa-forumbee "></i> Add friend</a>
                             <a href="#" class="btn bg-dark profile-buttons"><i class="fa fa-weixin"></i> Message</a>
                         </div>
                     </div>
@@ -187,17 +191,17 @@
                     <li><a href="#"><span class="fa fa-picture-o"></span> Add Photos/Video</a></li>
                     <li><a href="#"><span class="fa fa-th"></span> Create Photo Album</a></li>
                 </ul>
+                {{ form_start(form) }}
                 <div class="col-12 row" id="post_content">
                     <div class="col-2">
                         <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
                              class="rounded-circle hvr-pulse-grow">
                     </div>
-                    <form action="{{ path('profile') }}" method="post">
-                        <div class="textarea_wrap col-10" style="padding-left: 0px"><textarea class="col-12"
-                                                                                              name="form[content]"
-                                                                                              placeholder="What's on your mind?"></textarea>
-                        </div>
-                    </form>
+                    <div class="textarea_wrap col-10" style="padding-left: 0px;">
+
+                        {{ form_row(form.content, {'label' : false, 'attr': {'class': 'col-12' , 'placeholder': "What's on your mind?"}}) }}
+
+                    </div>
                 </div>
                 <div class="col-12 row" id="post_footer">
                     <ul class="navbar-nav col-7" style="display: inline-block;">
@@ -208,9 +212,10 @@
                     </ul>
                     <div class="col-5">
                         <button class="btn btn-default"><span class="fa fa-cog"></span> Custom</button>
-                        <button class="btn btn-primary">Post</button>
+                        <button class="btn btn-primary" type="submit">Post</button>
                     </div>
                 </div>
+                {{ form_end(form) }}
             </div>
             <br>
             <div class="facebook-box col-12 card ">
@@ -259,9 +264,22 @@
                 <br>
                 <div class="facebook-box col-12 card ">
                     <div class="content">
-                        <div class="right-icon">
-                            <i class="fa fa-angle-down"></i>
-                        </div>
+                        {% if app.user.id == status.user.id %}
+                            <div class="right-icon">
+                                <div class="col-lg-1 float-left">
+                                    <div class="btn-group">
+                                        <div class="btn fa fa-angle-down" style="cursor: pointer;"
+                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></div>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href=''>Edit</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item"
+                                               href='{{ path('delete-user', {idStatus: status.id}) }}'>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <div class="row">
                             <div class="col-2 avatar">
                                 <img src="{{ asset('images/no-img-user.png') }}" width="60px" alt="profile pic"
@@ -270,7 +288,7 @@
                             <div class="col-10 name">
                                 <h5><a href="http://khoipro.com"
                                        target="_blank">{{ user.firstname }} {{ user.lastname }}</a></h5>
-                                <span class="sub">{{ status.date }}</span>
+                                <span class="sub">{{ status.date |localizeddate('long', 'short') }}</span>
                             </div>
                         </div>
                         <div class="row text" style="margin-top: 20px">

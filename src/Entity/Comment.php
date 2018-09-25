@@ -32,6 +32,11 @@ class Comment
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Status", inversedBy="comments")
+     */
+    private $status;
+
 
     public function getId(): int
     {
@@ -70,6 +75,18 @@ class Comment
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

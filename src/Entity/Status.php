@@ -32,6 +32,10 @@ class Status
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="status")
+     */
+    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="status")
@@ -49,12 +53,12 @@ class Status
         return $this->id;
     }
 
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
@@ -73,14 +77,26 @@ class Status
         return $this;
     }
 
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

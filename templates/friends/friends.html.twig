@@ -140,8 +140,9 @@
                         <div class="d-block col-lg-3 text-center">|
                             <button data-toggle="modal" title="Vérifier cet utilisateur" class="icon-btn"><i
                                         class="fa fa-check"></i></button>
-                            <button data-toggle="modal" title="Supprimer cet utilisateur" class="icon-btn"><i
-                                        class="fa fa-trash"></i></button>
+                            <a data-toggle="modal" href="{{ path('delete-friend', {idUser: user.id}) }}"
+                               title="Supprimer cet utilisateur" class="icon-btn"><i
+                                        class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 </div>

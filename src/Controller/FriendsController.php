@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,9 @@ class FriendsController extends AbstractController
      */
     public function friends()
     {
-        $user = new User();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $currentUser = $this->getUser();
+        $user = $repository->find($currentUser->getId());
         return $this->render('friends/friends.html.twig', [
             'user' => $user,
             'controller_name' => 'Friends',
@@ -23,34 +26,37 @@ class FriendsController extends AbstractController
     /**
      * @Route("/friends/add-friend/{idUser}", name="add-friend")
      */
-    public function addFriend($idUser)
+    public function addFriend($idUser, ObjectManager $entityManager)
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $friend = $repository->find($idUser);
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        $user->addFriend($friend);
-        // TODO check if the user we got from app is full
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->refresh($user);
+        $currentUser = $repository->find($user->getId());
+        $currentUser->addFriend($friend);
+        $entityManager->refresh($currentUser);
         $entityManager->flush();
-        return $this->redirectToRoute('/friends');
+        // return $this->redirect('profile', ['idUser' => $idUser ]);
+        return $this->redirect($this->generateUrl('profile', array(
+            'idUser' => $idUser
+        )));
     }
 
     /**
-     * @Route("/friends/remove-friend/{idUser}", name="add-friend")
+     * @Route("/friends/remove-friend/{idUser}", name="remove-friend")
      */
-    public function removeFriend($idUser)
+    public function removeFriend($idUser, ObjectManager $entityManager)
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $friend = $repository->find($idUser);
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        $user->removeFriend($friend);
-        // TODO check if the user we got from app is full
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->refresh($user);
+        $currentUser = $repository->find($user->getId());
+        $currentUser->removeFriend($friend);
+        $entityManager->refresh($currentUser);
         $entityManager->flush();
-        return $this->redirectToRoute('/friends');
+        // return $this->redirect('profile', ['idUser' => $idUser ]);
+        return $this->redirect($this->generateUrl('profile', array(
+            'idUser' => $idUser
+        )));
     }
 }
