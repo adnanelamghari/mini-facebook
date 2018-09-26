@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+{% block friends %}
+    {% for friend in app.user.friends %}
+        <div class="row" style="margin-left: 0px">
+            <div class="col-lg-1">
+                <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
+                     height="40">
+            </div>
+            <div class="col-lg-10 row" style="margin-left: 5px">
+                <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
+                {% if friend.isOnline %}
+                    <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                      <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    <div class="row" style="margin-left: 50px;">
+        <div class="col-12">
+            <div class="row" style="margin-top: 100px;">
+                Add new Group:
+                {{ form_start(form) }}
+                {{ form_row(form.name, {'label' : false, 'attr': {'class': 'col-12' , 'placeholder': "Group Name?"}}) }}
+                <button class="btn btn-primary btn-block" type="submit">Create Group</button>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+        Groups List:
+        <hr>
+        <br>
+        {% for group in groups %}
+            <div class="col-12 row">
+                <div class="col-6">{{ group.name }} </div>
+                <div class="col-6"><a href="{{ path('group-page', {IdGroup: group.id}) }}"> Go to this group</a>
+                </div>
+            </div>
+            <hr>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
