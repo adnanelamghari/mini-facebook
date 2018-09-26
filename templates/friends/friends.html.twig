@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{ controller_name }}{% endblock %}
-
+{% block friends %}
+    {% for friend in app.user.friends %}
+        <div class="row" style="margin-left: 0px">
+            <div class="col-lg-1">
+                <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
+                     height="40">
+            </div>
+            <div class="col-lg-10 row" style="margin-left: 5px">
+                <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
+                {% if friend.isOnline %}
+                    <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                      <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
 {% block body %}
     <div class="row">
         <div class="col-12">
@@ -12,7 +29,7 @@
                         <div class="col-lg-3"></div>
                         <div class="btn-group col-lg-9" role="group">
                             <a href="#" class="btn bg-dark">About</a>
-                            <a href="#" class="btn bg-dark">Friends</a>
+                            <a href="{{ path('friends') }}" class="btn bg-dark">Friends</a>
                             <a href="#" class="btn bg-dark">Photos</a>
                             <a href="#" class="btn bg-dark">Archive</a>
                             <div class="btn-group" role="group">
@@ -47,7 +64,7 @@
                         </div>
                         <div class="col-6" style="margin-top: -100px;">
                             <a href="#" style="margin-left:200px;" class="btn bg-dark profile-buttons"><i
-                                        class="fa fa-forumbee "></i> Follow</a>
+                                        class="fa fa-forumbee "></i> Edit Profile</a>
                             <a href="#" class="btn bg-dark profile-buttons"><i class="fa fa-weixin"></i> Message</a>
                         </div>
                     </div>
@@ -125,9 +142,9 @@
                         <td><img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow"
                                  width="80" height="80" style="margin: 12px;"></td>
                         <td>{{ friend.firstname }} {{ friend.lastname }}
-                            <p class="">Fonction:</p>
+                            <p class="">Friend since: 3 years</p>
                             <hr>
-                            <p class="font-khfif">Dernière activité: </p>
+                            <p class="font-khfif">Last activity: 23-09-2018 17:46 </p>
                         </td>
                     </tr>
                 </table>

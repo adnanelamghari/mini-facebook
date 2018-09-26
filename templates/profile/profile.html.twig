@@ -2,7 +2,7 @@
 
 {% block title %}{{ controller_name }}{% endblock %}
 {% block friends %}
-    {% for friend in user.friends %}
+    {% for friend in app.user.friends %}
         <div class="row" style="margin-left: 0px">
             <div class="col-lg-1">
                 <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
@@ -64,9 +64,21 @@
                                   style=" margin-left: 10px; font-size: 25px"> {{ user.firstname }} {{ user.lastname }}</span>
                         </div>
                         <div class="col-6" style="margin-top: -100px;">
-                            <a href="{{ path('add-friend', {idUser: user.id}) }}" style="margin-left:200px;"
-                               class="btn bg-dark profile-buttons"><i
-                                        class="fa fa-forumbee "></i> Add friend</a>
+                            {% if user.id != app.user.id %}
+                                {% if displayAdd %}
+                                    <a href="{{ path('add-friend', {idUser: user.id}) }}" style="margin-left:200px;"
+                                       class="btn bg-dark profile-buttons"><i
+                                                class="fa fa-forumbee "></i> Add friend</a>
+                                {% else %}
+                                    <a href="{{ path('remove-friend', {idUser: user.id}) }}" style="margin-left:200px;"
+                                       class="btn bg-dark profile-buttons"><i
+                                                class="fa fa-forumbee "></i> Unfriend</a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ path('profile') }}" style="margin-left:200px;"
+                                   class="btn bg-dark profile-buttons"><i
+                                            class="fa fa-forumbee "></i> Edit Profile</a>
+                            {% endif %}
                             <a href="#" class="btn bg-dark profile-buttons"><i class="fa fa-weixin"></i> Message</a>
                         </div>
                     </div>
@@ -185,38 +197,40 @@
             </div>
         </div>
         <div class="col-lg-7"><br>
-            <div class="col-12" id="new_status" class="card">
-                <ul class="col-12" id="post_header" role="navigation">
-                    <li><a href="#"><span class="fa fa-pencil"></span> Update Status</a></li>
-                    <li><a href="#"><span class="fa fa-picture-o"></span> Add Photos/Video</a></li>
-                    <li><a href="#"><span class="fa fa-th"></span> Create Photo Album</a></li>
-                </ul>
-                {{ form_start(form) }}
-                <div class="col-12 row" id="post_content">
-                    <div class="col-2">
-                        <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
-                             class="rounded-circle hvr-pulse-grow">
-                    </div>
-                    <div class="textarea_wrap col-10" style="padding-left: 0px;">
-
-                        {{ form_row(form.content, {'label' : false, 'attr': {'class': 'col-12' , 'placeholder': "What's on your mind?"}}) }}
-
-                    </div>
-                </div>
-                <div class="col-12 row" id="post_footer">
-                    <ul class="navbar-nav col-7" style="display: inline-block;">
-                        <li><a href="#"><span class="fa fa-camera"></span></a></li>
-                        <li><a href="#"><span class="fa fa-user"></span></a></li>
-                        <li><a href="#"><span class="fa fa-glass"></span></a></li>
-                        <li><a href="#"><span class="fa fa-map-marker"></span></a></li>
+            {% if app.user.id == user.id %}
+                <div class="col-12" id="new_status" class="card">
+                    <ul class="col-12" id="post_header" role="navigation">
+                        <li><a href="#"><span class="fa fa-pencil"></span> Update Status</a></li>
+                        <li><a href="#"><span class="fa fa-picture-o"></span> Add Photos/Video</a></li>
+                        <li><a href="#"><span class="fa fa-th"></span> Create Photo Album</a></li>
                     </ul>
-                    <div class="col-5">
-                        <button class="btn btn-default"><span class="fa fa-cog"></span> Custom</button>
-                        <button class="btn btn-primary" type="submit">Post</button>
+                    {{ form_start(form) }}
+                    <div class="col-12 row" id="post_content">
+                        <div class="col-2">
+                            <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
+                                 class="rounded-circle hvr-pulse-grow">
+                        </div>
+                        <div class="textarea_wrap col-10" style="padding-left: 0px;">
+
+                            {{ form_row(form.content, {'label' : false, 'attr': {'class': 'col-12' , 'placeholder': "What's on your mind?"}}) }}
+
+                        </div>
                     </div>
+                    <div class="col-12 row" id="post_footer">
+                        <ul class="navbar-nav col-7" style="display: inline-block;">
+                            <li><a href="#"><span class="fa fa-camera"></span></a></li>
+                            <li><a href="#"><span class="fa fa-user"></span></a></li>
+                            <li><a href="#"><span class="fa fa-glass"></span></a></li>
+                            <li><a href="#"><span class="fa fa-map-marker"></span></a></li>
+                        </ul>
+                        <div class="col-5">
+                            <button class="btn btn-default"><span class="fa fa-cog"></span> Custom</button>
+                            <button class="btn btn-primary" type="submit">Post</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
-                {{ form_end(form) }}
-            </div>
+            {% endif %}
             <br>
             <div class="facebook-box col-12 card ">
                 <div class="content">
@@ -286,7 +300,7 @@
                                      class="rounded-circle hvr-pulse-grow"/>
                             </div>
                             <div class="col-10 name">
-                                <h5><a href="http://khoipro.com"
+                                <h5><a href="{{ path('profile', {idUser: status.user.id}) }}"
                                        target="_blank">{{ user.firstname }} {{ user.lastname }}</a></h5>
                                 <span class="sub">{{ status.date |localizeddate('long', 'short') }}</span>
                             </div>

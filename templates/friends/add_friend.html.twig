@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{ controller_name }}{% endblock %}
-
+{% block friends %}
+    {% for friend in app.user.friends %}
+        <div class="row" style="margin-left: 0px">
+            <div class="col-lg-1">
+                <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
+                     height="40">
+            </div>
+            <div class="col-lg-10 row" style="margin-left: 5px">
+                <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
+                {% if friend.isOnline %}
+                    <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                      <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
 {% block body %}
     <div class="card card-register mx-auto mt-5" style="border: none">
         <div class="card-header">Add a new friend</div>

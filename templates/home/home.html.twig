@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ controller_name }}{% endblock %}
-
+{% block friends %}
+    {% for friend in app.user.friends %}
+        <div class="row" style="margin-left: 0px">
+            <div class="col-lg-1">
+                <img src="{{ asset('images/no-img-user.png') }}" class="rounded-circle hvr-pulse-grow" width="40"
+                     height="40">
+            </div>
+            <div class="col-lg-10 row" style="margin-left: 5px">
+                <p style="margin-left: 10px; margin-top: 7px; color: white">{{ friend.firstname }} {{ friend.lastname }}</p>
+                {% if friend.isOnline %}
+                    <span class="indicator text-primary d-none d-lg-block" style=" margin-left: auto;">
+                      <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
 {% block body %}
     <div class="row">
         <div class="col-lg-8"><br><br>
@@ -11,13 +28,16 @@
                     <li><a href="#"><span class="fa fa-picture-o"></span> Add Photos/Video</a></li>
                     <li><a href="#"><span class="fa fa-th"></span> Create Photo Album</a></li>
                 </ul>
+                {{ form_start(form) }}
                 <div class="col-12 row" id="post_content">
                     <div class="col-2">
                         <img alt="profile picture" src="{{ asset('images/no-img-user.png') }}" height="60px"
                              class="rounded-circle hvr-pulse-grow">
                     </div>
-                    <div class="textarea_wrap col-10" style="padding-left: 0px"><textarea class="col-12"
-                                                                                          placeholder="What's on your mind?"></textarea>
+                    <div class="textarea_wrap col-10" style="padding-left: 0px;">
+
+                        {{ form_row(form.content, {'label' : false, 'attr': {'class': 'col-12' , 'placeholder': "What's on your mind?"}}) }}
+
                     </div>
                 </div>
                 <div class="col-12 row" id="post_footer">
@@ -29,9 +49,10 @@
                     </ul>
                     <div class="col-5">
                         <button class="btn btn-default"><span class="fa fa-cog"></span> Custom</button>
-                        <button class="btn btn-primary">Post</button>
+                        <button class="btn btn-primary" type="submit">Post</button>
                     </div>
                 </div>
+                {{ form_end(form) }}
             </div>
             <br>
             <div class="facebook-box col-12 card ">
@@ -89,9 +110,9 @@
                                      class="rounded-circle hvr-pulse-grow"/>
                             </div>
                             <div class="col-10 name">
-                                <h5><a href="http://khoipro.com"
-                                       target="_blank">{{ user.firstname }} {{ user.lastname }}</a></h5>
-                                <span class="sub">{{ status.date }}</span>
+                                <h5><a href="{{ path('profile', {idUser: status.user.id}) }}"
+                                       target="_blank">{{ status.user.firstname }} {{ status.user.lastname }}</a></h5>
+                                <span class="sub">{{ status.date |localizeddate('long', 'short') }}</span>
                             </div>
                         </div>
                         <div class="row text" style="margin-top: 20px">
@@ -158,6 +179,14 @@
                 <div class="col-lg-10 row" style="margin-left: 5px">
                     <a class="d-none d-lg-block " href="#" style=" margin-left: auto;">
                         Messenger
+                    </a>
+                    <i class="fa fa-wechat col-1"></i>
+                </div>
+            </div>
+            <div class="row margin-top">
+                <div class="col-lg-10 row" style="margin-left: 5px">
+                    <a class="d-none d-lg-block " href="{{ path('friends') }}" style=" margin-left: auto;">
+                        Friends List
                     </a>
                     <i class="fa fa-wechat col-1"></i>
                 </div>

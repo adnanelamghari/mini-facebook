@@ -18,15 +18,16 @@ class ProfileController extends AbstractController
     public function profile($idUser = 0, Request $request, ObjectManager $entityManager)
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
+        $currentUser = $repository->find($this->getUser()->getId());
         if ($idUser == 0) {
             $idUser = $this->getUser()->getId();
-            $currentUser = $repository->find($idUser);
             if (!$currentUser->getIsOnline()) {
                 $currentUser->setIsOnline(true);
                 $entityManager->flush();
             }
         }
         $user = $repository->find($idUser);
+        $displayAdd = $currentUser->isFriend($user);
         $status = new Status();
         $form = $this->createForm(StatusType::class, $status);
         $form->handleRequest($request);
@@ -40,6 +41,7 @@ class ProfileController extends AbstractController
         return $this->render('profile/profile.html.twig', [
             'controller_name' => 'Profile',
             'user' => $user,
+            'displayAdd' => $displayAdd,
             'form' => $form->createView(),
         ]);
     }
@@ -57,4 +59,5 @@ class ProfileController extends AbstractController
         }
         return $this->redirectToRoute('profile');
     }
+
 }

@@ -229,6 +229,15 @@ class User implements UserInterface
         return $this;
     }
 
+
+    public function isFriend(User $friend): ?bool
+    {
+        $foundUser = $this->friends->exists(function ($key, $element) use ($friend) {
+            return $friend->getId() == $element->getId();
+        });
+        return $foundUser == false;
+    }
+
     /**
      * @return Collection|Status[]
      */
