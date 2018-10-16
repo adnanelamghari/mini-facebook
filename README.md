@@ -58,6 +58,14 @@ On the browser: http://127.0.0.1:8000
 ![home 1_1](https://user-images.githubusercontent.com/31404363/46182832-dc968d00-c2c5-11e8-84ce-c14e73d0a1e1.PNG)
 ![home 1_2](https://user-images.githubusercontent.com/31404363/46182833-dc968d00-c2c5-11e8-8cd0-509b41546e5a.PNG)
 
+
+## Versioning
+Available versions: 
+Backend: Rest Api symfony: https://github.com/adnanelamghari/mini-facebook-symfony-api
+Fronend: AngularJs: https://github.com/adnanelamghari/mini-facebook-AngularJS-rest
+And other version (in progress using AngularJS here: https://github.com/adnanelamghari/facebook-AngularJS-Front
+
+
 ## Authors
 
 * **Adnane Lamghari** [LinkedIn](https://www.linkedin.com/in/adnane-lamghari/)
